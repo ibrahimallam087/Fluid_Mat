@@ -34,7 +34,7 @@ void modifyVactor(std::vector<int>& vec1){
     }
 }
 
-std::vector<double> gaussianElimination(std::vector<std::vector<double>> matrix){
+void gaussianElimination(std::vector<std::vector<double>>& matrix){
     int len = matrix.size(); // Number of rows of the augmented matrix
 
     for(int i=0;i<len;++i){
@@ -48,4 +48,19 @@ std::vector<double> gaussianElimination(std::vector<std::vector<double>> matrix)
 
     }
 
+}
+
+void print_Matrix(const std::vector<std::vector<double>>& matrix) {
+    int rows = matrix.size();        // Number of rows
+    int cols = matrix[0].size();     // Number of columns
+
+    std::cout << "[\n";
+    for (int i = 0; i < rows; i++) {
+        std::cout << "  ";
+        for (int j = 0; j < cols; j++) {
+            std::cout << matrix[i][j] << " ";
+        }
+        std::cout << "\n";
+    }
+    std::cout << "]" << std::endl;
 }

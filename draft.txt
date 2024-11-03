@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+void gaussianElimination(std::vector<std::vector<double>>& matrix) {
+    int n = matrix.size(); // Number of rows
+
+    // Forward elimination
+    for (int i = 0; i < n; ++i) {
+        // Eliminate below pivot
+        for (int j = i + 1; j < n; ++j) {
+            double factor = matrix[j][i] / matrix[i][i];
+            for (int k = 0; k < n + 1; ++k) {
+                matrix[j][k] -= factor * matrix[i][k];
+            }
+        }
+    }
+
+    // Back substitution
+    std::vector<double> solution(n); // Create a vector to store the solution
+    for (int i = n - 1; i >= 0; --i) { // Start from the last row
+        solution[i] = matrix[i][n]; // Start with the last column (the results)
+        for (int j = i + 1; j < n; ++j) { // Iterate through the columns to the right
+            solution[i] -= matrix[i][j] * solution[j]; // Subtract known values
+        }
+        solution[i] /= matrix[i][i]; // Divide by the diagonal element to solve for the variable
+    }
+
+    // Output the solution
+    std::cout << "Solution:\n";
+    for (double x : solution) {
+        std::cout << x << std::endl; // Print each variable's value
+    }
+}
+
+int main() {
+    // Augmented matrix representation of the system
+    std::vector<std::vector<double>> matrix = {
+        {2, 3, 1, 1},    // 2x + 3y + z = 1
+        {4, 1, -2, -2},  // 4x + y - 2z = -2
+        {-2, 1, 2, 3}    // -2x + y + 2z = 3
+    };
+
+    gaussianElimination(matrix);
+    return 0;
+}
