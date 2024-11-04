@@ -13,6 +13,5 @@ int main(void){
     std::cout<<"this is the Upper matrix"<<std::endl;
     print_Matrix(matrix);
     
-    
-
+  
 }

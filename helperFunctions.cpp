@@ -47,6 +47,19 @@ void gaussianElimination(std::vector<std::vector<double>>& matrix){
         }
 
     }
+    std::vector<double> solution(len);
+
+    for(int k = len-1;k>=0;k--){
+        solution[k] =matrix[k][len];
+        
+        for(int j=k+1;j<len ;j--){
+            solution[k] = solution[k]-solution[j]*matrix[k][j];
+        }
+         solution[k]/=matrix[k][k];
+    }
+
+
+
 
 }
 
